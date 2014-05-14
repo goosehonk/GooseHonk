@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GooseHonk</title>
+    <link href="images/favicon.png" rel="icon" type="image/png">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/scrollpane.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/submit.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/events.js"></script>
+</head>
+
+<body>
+
+<div class="frame">
+    
+    <div class="top">
+        <div class="goosehonk">
+        	<a href="/"><div id="logo"></div></a>
+        </div>
+        <div class="social">
+        	<div id="fb-share">
+                <div id="fb-root"></div>
+                <div class="fb-share-button" data-href="http://www.goosehonk.se" data-type="button"></div>
+            </div>
+            <div id="fb-like">
+            	<div id="fb-root"></div>
+            	<div class="fb-like" data-href="https://www.facebook.com/goosehonkofficial" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+            </div>
+            <div id="twitter">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this cool website!" data-hashtags="goosehonk"></a>
+    		</div>
+            <div id="google-plus">
+            	<div class="g-plusone" data-size="medium" data-href="http://www.goosehonk.se"></div>
+            </div>
+        </div>
+        <div class="top-wrapper">
+        	<div class="top-content">
+            	<div class="nav">
+                	<a id="start" class="active">Log in</a>
+                    <a id="about" class>About</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-wrapper">
+            <div class="user-details">
+                <span id="user-span"></span>
+                <span id="admin-span"></span>
+                <img src="images/settings.png" class="settings-button left">
+                <img src="images/settings.png" class="settings-button right">
+            </div>
+        </div>
+    </div>
+    
+    <div class="start active">
+    	<div class="content-wrapper" style="overflow:visible">
+            <div class="form-container">
+                <div id="form">
+                    <div class="card login" onKeyDown="if(event.keyCode == 13) document.getElementById('connect').click();">
+                        <div id="error" class="error-tooltip">
+                            <div class="error-tooltip-content"></div>
+                        </div>
+                        <div class="login-content">
+                            <div class="login-logo">
+                            	<div id="login-logo"></div>
+                            </div>
+                            <div id="user-input" class="input-wrapper"><input type="text" id="user" placeholder="Username" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div id="lobby-input" class="input-wrapper"><input type="text" id="lobby" placeholder="Lobby" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div id="password-input" class="input-wrapper"><input type="password" id="password" placeholder="Password" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <a id="connect" class="button" onclick="submit()">Connect</a>
+                            <div class="register-wrapper">
+                                <span></span>
+                                <a id="register-link" onclick="flipRegister()">Premium register</a>
+                            </div>
+                            <div class="login-wrapper">
+                                <span></span>
+                                <a id="login-link" onclick="flipLogin()">Premium login</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card user-login" onKeyDown="if(event.keyCode == 13) document.getElementById('login').click();">
+                        <div id="login-error" class="error-tooltip">
+                            <div class="error-tooltip-content"></div>
+                        </div>
+                        <div class="login-content">
+                            <div class="login-logo">
+                            	<div id="user-login-logo"></div>
+                            </div>
+                            <div class="card-header">
+                                <span></span>
+                            </div>
+                            <div class="user-login-wrapper"><input type="text" id="login-user" placeholder="Username" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div class="password-login-wrapper"><input type="password" id="login-password" placeholder="Password" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <a id="login" class="button" onclick="loginSubmit()">Log in</a>
+                            <div class="register-wrapper">
+                                <a id="register-link" onclick="flipRegister()">Premium register</a>
+                            </div>
+                            <div class="login-wrapper">
+                                <a id="login-link" onclick="flipLogin()">Back to guest login</a>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="card register" onKeyDown="if(event.keyCode == 13) document.getElementById('register').click();">
+                        <div id="register-error" class="error-tooltip">
+                            <div class="error-tooltip-content"></div>
+                        </div>
+                        <div class="login-content">
+                            <div class="login-logo">
+                            	<div id="register-logo"></div>
+                            </div>
+                            <div class="card-header">
+                                <span></span>
+                            </div>
+                            <div class="user-register-wrapper"><input type="text" id="register-user" placeholder="Username" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div class="email-register-wrapper"><input type="email" id="register-email" placeholder="E-mail" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div class="password-register-wrapper"><input type="password" id="register-password" placeholder="Password" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <div class="password2-register-wrapper"><input type="password" id="register-password2" placeholder="Re-type password" spellcheck="false" autocomplete="off" onKeyUp="validate(event.keyCode)"></div>
+                            <a id="register" class="button" onclick="registerSubmit()">Register</a>
+                            <div class="register-wrapper">
+                                <a id="register-link" onclick="flipRegister()">Back to guest login</a>
+                            </div>
+                            <div class="login-wrapper">
+                                <span>Already premium?</span>
+                                <a id="login-link" onclick="flipLogin()">Premium login</a>
+                            </div> 
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="about">
+	<div class="content-wrapper about-wrapper">
+    	<div class="about-content">
+			<span id="about-header">About GooseHonk</span>
+            <h2>"Talking with friends has never been easier"</h2>
+            GooseHonk is a project developed by a team of nine students at KTH-Kista, Sweden. The idea behind the web application is a simple, versatile and easy to use voice communication service that doesn’t require any registration or installation.<br><br>
+
+			We have developed it during a five week period time span. We use SimpleWebRTC for the voice communication and the rest is programmed and created from scratch.<br><br>
+
+			<h3>The team behind GooseHonk:</h3> 
+            Annie Xu<br>
+			Henrik Johansson<br>
+			Jakob Olsson<br>
+			Jana Prihodko<br>
+			Jens Lundblad<br>
+			Oskar Rosén<br>
+			Sophie Eskesen<br>
+			Steven Ly<br>
+			Viktor Yberg<br><br>
+<br>
+<br>
+			<span id="about-header">Guide</span>
+			<img src="images/login_green.png">
+            <img src="images/login_yellow.png">
+            <img src="images/premium.png">
+            <img src="images/premium_taken.png">
+           	<img src="images/hej.png">
+            <img src="images/hej2.png">
+            <img src="images/hej3.png">
+            <img src="images/hej4.png">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+$(window).load(function () {
+	var user = document.getElementById('user');
+	var lobby = document.getElementById('lobby');
+	var s = window.location.search.substring(1);
+	user.focus();
+	lobby.value = s;
+	premium = getCookie("premium");
+	if(premium != "" && document.cookie != "") {
+		user.value = premium;
+		lobby.focus();
+		$('a#login-link').text("Logout");
+	}
+
+	$('#user-span').text(premium);
+	
+	if(premium != "" && s != "")
+		submit();
+
+	if(premium != "" && premium == user.value) {
+		$('#user-span').text(premium);
+		$('#user-input').addClass("free");
+	}else {
+		$('#user-span').text("");
+	}
+	
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.0";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.0";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	
+	(function() {
+    	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    	po.src = 'https://apis.google.com/js/platform.js';
+    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  	})();
+});
+
+function validate(key) {
+	var user = document.getElementById('user');
+	var lobby = document.getElementById('lobby');
+	var password = document.getElementById('password');
+	var tooltip = "#error.error-tooltip";
+	var tooltipContent = "#error > .error-tooltip-content";
+	var error = "#error";
+	var offset = -$('#form').offset().top - 4;
+	if(key != 13) {
+		
+		var ok = true;
+		var length = true;
+		
+		$('#user-input').removeClass("free");
+		$('#user-input').removeClass("busy");
+		$('#user-input').removeClass("error");
+		$('#lobby-input').removeClass("free");
+		$('#lobby-input').removeClass("busy");
+		$('#lobby-input').removeClass("error");
+		
+		if(premium != "" && user.value == premium) {
+			$('#user-input').addClass("free");
+		}
+		if(((user.value.length < 3 || lobby.value.length < 2) || (user.value.length > 10 || lobby.value.length > 10)) && ok) {
+			length = false;
+			if(user.value.length < 3 || lobby.value.length < 2) {
+				if(lobby.value.length > 0 && lobby.value.length < 2) {
+					$('#lobby-input').addClass("error");
+				}
+				if(user.value.length > 0 && user.value.length < 3) {
+					$('#user-input').addClass("error");
+				}
+			}
+			if(user.value.length > 10 || lobby.value.length > 10) {
+				if(lobby.value.length > 10) {
+					offset += $(lobby).offset().top;
+					$('#lobby-input').addClass("error");
+					$(tooltipContent).html("Lobby name must be between 3 and 10 characters");
+				}
+				if(user.value.length > 10) {
+					offset = -$('#form').offset().top - 4;
+					offset += $(user).offset().top;
+					$('#user-input').addClass("error");
+					$(tooltipContent).html("Username must be between 3 and 10 characters");
+				}	
+				$(error).css({"top": offset + "px" });
+				$(tooltip).addClass("active");
+			}
+			else {
+				$(tooltip).removeClass("active");
+			}
+		}
+		offset = -$('#form').offset().top - 4;
+		if(lobby.value.length >= 2 && lobby.value.length <= 10 && lobby.value.match(/[^A-Za-z0-9\-_]/)){
+			console.log("lobby");
+			offset += $(lobby).offset().top;
+			$(error).css({"top": offset + "px" });
+			$(tooltip).addClass("active");
+			$(tooltipContent).html("Lobby contains illegal characters");
+			ok = false;
+		}
+		if(user.value.length >= 3 && user.value.length <= 10 && user.value.match(/[^A-Za-z0-9\-_]/)){
+			console.log("user");
+			offset += $(user).offset().top;
+			$(error).css({"top": offset + "px" });
+			$(tooltip).addClass("active");
+			$(tooltipContent).html("Username contains illegal characters");
+			ok = false;
+		}
+		else if(ok) {
+			if(length)
+				$(tooltip).removeClass("active");
+			if(user.value != "" && lobby.value != "") {
+				var res = null;
+				$.ajax({
+					url         :   "php/validate.php",
+					dataType    :   "html", /* JSON, HTML, SJONP... */
+					type        :   "post", /* POST or GET; Default = GET */
+					async		: 	false,
+					data: { 	
+						user    :   user.value,
+						lobby	:	lobby.value,
+						premium :	premium
+					},
+					success     :   
+						function(response) {
+							res = parseInt(response);
+						}
+				});
+				
+				if(res == 0) {			// Upptagen lobby och upptaget namn
+					$('#user-input').addClass("busy");
+					$('#lobby-input').addClass("busy");
+				}
+				else if(res == 1) {		 // Upptaget namn
+					$('#user-input').addClass("busy");
+					$('#lobby-input').addClass("free");
+				}
+				else if(res == 2) {		// Upptagen lobby men ledigt namn
+					$('#user-input').addClass("free");
+					$('#lobby-input').addClass("busy");
+				}
+				else if(res == 3) {		// Ledigt namn och ledig lobby
+					$('#user-input').addClass("free");
+					$('#lobby-input').addClass("free");
+				}
+				else {
+		
+				}
+			}
+		}
+	}
+}
+
+function flipLogout() {
+	if($('#form').hasClass("flip-register")) {
+		$('#form').removeClass("flip-register");
+		$('#user').focus();
+		updateCookie({user: "null", premium: "null"});
+	}
+	else if(!$('#form').hasClass("flip-login")) {
+		$('#form').addClass("flip-360");
+		updateCookie({user: "null", premium: "null"});
+	}
+	$('a#login-link').text("Premium login");
+	$('#user-span').text("");
+	$('#user-input').removeClass("free");
+	setTimeout(function(){
+		$('#user').val("");
+		$('#lobby').val("");
+		$('#user').focus();
+	}, 300);
+}
+
+function flipLogin() {
+	$('#form').removeClass("flip-360");
+	if(getCookie("premium") != "" && document.cookie != "") {
+		flipLogout();
+	}
+	else if($('#form').hasClass("flip-login")) {
+		$('#form').removeClass("flip-login");
+		$('#user').focus();
+	}
+	else {
+		$('#form').addClass("flip-login");
+		if($('#form').hasClass("flip-register")) {
+			setTimeout(function(){
+				$('.register').css("display", "none");
+				$('.user-login').css("display", "block");
+				$('#login-user').focus();
+			}, 300);
+		}
+		else {
+			$('.register').css("display", "none");
+			$('.user-login').css("display", "block");
+			$('#login-user').focus();
+		}
+	}
+	$('#form').removeClass("flip-register");
+}
+
+function flipRegister() {
+	$('#form').removeClass("flip-360");
+	if($('#form').hasClass("flip-register")) {
+		$('#form').removeClass("flip-register");
+		$('#user').focus();
+	}
+	
+	else {
+		$('#form').addClass("flip-register");
+		if($('#form').hasClass("flip-login")) {
+			setTimeout(function() {
+				$('.user-login').css("display", "none");
+				$('.register').css("display", "block");
+				$('#register-user').focus();
+			}, 300);
+		}
+		else {
+			$('.user-login').css("display", "none");
+			$('.register').css("display", "block");
+			$('#register-user').focus();
+		}
+	}
+	$('#form').removeClass("flip-login");
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+@charset "utf-8";
+/* CSS Document */
+
+* { /* Allt */
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	color: #333;
+}
+
+a {
+	text-decoration: none;
+}
+
+.goosehonk {
+	color: #206ba4;
+	font-size: 36px;
+}
+
+.nav a {
+	font-size: 18px;
+	color: #aaa;
+}
+
+.nav a:hover, .nav a.active {
+	color: #666;
+}
+
+#user-span, #admin-span {
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.card-header span {
+	font-size: 18px;
+}
+
+#form input {
+	font-size: 20px;
+}
+
+input#register-user, 
+input#register-password, 
+input#register-password2, 
+input#register-email {
+	font-size: 16px;
+}
+
+.button {
+	font-weight: 200;
+	font-size: 20px;
+}
+
+#register-link, 
+#login-link {
+	text-decoration: underline;
+	font-weight: 500;
+}
+
+.error-tooltip-content {
+	font-size: 18px;
+	font-weight: 300;
+	color: #FFF;
+}
+
+#about-header {
+	font-size: 42px;
+	font-weight: 300;
+}
+
+.content {
+	color: #666;
+}
+
+.settings-content {
+	color: #404040;
+	text-shadow: 1px 1px 0px rgba(255,255,255,0.2);
+}
+
+.settings-content a {
+	color: #404040;
+}
+
+.h2 {
+	color: #206ba4;
+	font-size: 34px;
+	font-weight: 300;
+}
+
+.h3 {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.h4 {
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.menu {
+	text-shadow: 1px 1px 0px rgba(255,255,255,.5);
+}
+
+#lobby-span {
+	font-size: 40px;
+	font-weight: 500;
+}
+
+ul {
+	color: #404040;
+	font-size: 24px;
+	font-weight: 500;
+}
+
+li {
+	font-size: 18px;
+}
+
+li.self {
+	font-weight: 600;
+	color: #206ba4;
+}
+
+li:before {
+	color: #333;
+	text-shadow: none;
+	font-weight: 500;
+}
+
+#new-room {
+	font-size: 16px;
+}
+
+#new-room-button {
+	font-size: 16px;
+}
+
+.chat-window-header-content span { /* Rubrik chattf��nster */
+	color: #fefbee;
+	text-shadow: 0px 1px rgba(119,170,208,0.5);
+	font-size: 36px;
+	font-weight: 100;
+}
+
+.chat-window-content span { /* Chatt */
+	/*font-family: 'Roboto', sans-serif;*/
+}
+
+.chat-window-content a { /* Anv��ndare i chatten */
+	font-weight: 600;
+	color: #206ba4;
+}
+
+.chat-message {
+	font-size: 18px;
+}
+
+.message-text span {
+	
+}
+
+.message-time span {
+	font-size: 16px;
+}
+
+#tooltip-content div {
+	color: #fefbee;
+}
+
+#message { /* Dialogruta */
+	font-size: 16px;
+}
+
+::-webkit-input-placeholder { /* Webkit browsers */
+	color: #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #ccc;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #ccc;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #ccc;
+}
